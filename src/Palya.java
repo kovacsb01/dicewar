@@ -1,7 +1,41 @@
 import java.util.Random;
 
 public class Palya {
-    public static int szamol;
+
+    private Mezo[] mezok;
+    private int n;
+    private int m;
+
+
+    public Palya(int n, int m) {
+        this.n = n;
+        this.m = m;
+        mezok = new Mezo[n * m];
+        for (int i = 0; i < n; i++){
+            for (int j = 0; j < m; j++){
+                mezok[(i * m) + j] = new Mezo(new Koordinata(i, j));
+            }
+        }
+    }
+
+    public Palya(int n) {
+        this(n, n);
+    }
+
+    @Override
+    public String toString() {
+        String palya = "";
+        for (int i = 0; i < n+1; i++){
+            for (int j = 0; j < m+1; j++){
+                if (i == 0 || j == 0) palya += i + j + " ";
+                else palya += mezok[((i - 1) * m) + (j - 1)].getDobokockaSzama() + " ";
+            }
+            palya += "\n";
+        }
+        return palya;
+    }
+
+    /*public static int szamol;
     public static int[][] palyatomb;
 
     public static int[][] getPalyatomb() {
@@ -22,7 +56,7 @@ public class Palya {
             palyameret += "\n";
         }
         return palyameret;
-    }
+    }*/
 
 
 }

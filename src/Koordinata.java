@@ -29,6 +29,10 @@ public class Koordinata {
     }
 
     public boolean szomszed(Koordinata masik){
-        return ((x == masik.x-1) || (x == masik.x+1) || (y == masik.y-1) || (y == masik.y+1));
+        int atlo = 0;
+        if ((x == masik.x-1) || (x == masik.x+1)) atlo++;
+        if ((y == masik.y-1) || (y == masik.y+1)) atlo++;
+        if (atlo ==  1) return true;
+        return false;
     }
 }

@@ -2,8 +2,30 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Jatek {
+    private Beolvas beolvas;
+    private int jatekosokSzama;
+    public Jatek() {
+        beolvas = new BeolasKonzol();
+    }
+    private void bekerJatekosokSzama(){
+        System.out.println("Valassz hany ellenfelet szeretnel:");
+        System.out.println("1 2 3");
+        boolean ujra = true;
+        while (ujra){
+            jatekosokSzama = beolvas.kovetkezoSzam();
+            if (jatekosokSzama < 1 || jatekosokSzama > 3) System.out.println("Ez nem 1 es 3 kozott van, valassz 1 es 3 kozott");
+            else ujra = false;
+        }
+    }
 
-    private int ellenfelek;
+    public void futas(){
+
+        while (true){
+
+        }
+    }
+
+    /*private int ellenfelek;
 
     public Jatek(int ellenfelek) {
         this.ellenfelek = ellenfelek;
@@ -22,6 +44,5 @@ public class Jatek {
         else if (ellenfelek > 3) this.ellenfelek = 3;
         else this.ellenfelek = ellenfelek;
     }
-
-
+*/
 }
