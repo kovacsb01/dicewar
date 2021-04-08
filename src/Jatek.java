@@ -23,7 +23,7 @@ public class Jatek {
     }
 
     public void futas(){
-
+        bekerJatekosokSzama();
         while (true){
 
         }

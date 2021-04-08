@@ -15,14 +15,14 @@ public class Menu {
 
     public Valasztas valaszt(){
         System.out.println("Valassz:");
-        System.out.println("U: uj jatek");
-        System.out.println("B: betoltes");
-        System.out.println("K: kilepes");
+        System.out.println("uj jatek = U");
+        System.out.println("betoltes = B");
+        System.out.println("kilepes = K");
         String sor = be.nextLine();
         Valasztas valasztas = Valasztas.ISMERETLEN;
-        if (sor.equals("U")) valasztas = Valasztas.JATEK;
-        else if (sor.equals("B")) valasztas = Valasztas.BETOLTES;
-        else if (sor.equals("K")) valasztas = Valasztas.KILEPES;
+        if (sor.equals("U") || sor.equals("u")) valasztas = Valasztas.JATEK;
+        else if (sor.equals("B") || sor.equals("b")) valasztas = Valasztas.BETOLTES;
+        else if (sor.equals("K") || sor.equals("k")) valasztas = Valasztas.KILEPES;
         return valasztas;
     }
 }

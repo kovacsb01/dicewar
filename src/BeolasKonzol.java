@@ -28,5 +28,4 @@ public class BeolasKonzol extends Beolvas{
         return szam;
     }
 
-
 }
