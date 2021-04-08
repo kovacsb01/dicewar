@@ -10,6 +10,7 @@ public class Palya {
     public Palya(int n, int m) {
         this.n = n;
         this.m = m;
+
         mezok = new Mezo[n * m];
         for (int i = 0; i < n; i++){
             for (int j = 0; j < m; j++){
@@ -24,6 +25,7 @@ public class Palya {
 
     @Override
     public String toString() {
+
         String palya = "";
         for (int i = 0; i < n+1; i++){
             for (int j = 0; j < m+1; j++){

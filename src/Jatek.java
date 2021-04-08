@@ -1,13 +1,17 @@
+import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
 public class Jatek {
     private Beolvas beolvas;
     private int jatekosokSzama;
+    private Jatekos jatekos;
+
     public Jatek() {
         beolvas = new BeolasKonzol();
     }
-    private void bekerJatekosokSzama(){
+
+    public void bekerJatekosokSzama(){
         System.out.println("Valassz hany ellenfelet szeretnel:");
         System.out.println("1 2 3");
         boolean ujra = true;
