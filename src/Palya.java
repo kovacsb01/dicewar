@@ -20,7 +20,7 @@ public class Palya {
     }
 
     public Palya(int n) {
-        this(n, n);
+        this((n+1)*2, (n+1)*2);
     }
 
     @Override

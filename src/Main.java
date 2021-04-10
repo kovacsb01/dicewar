@@ -19,7 +19,7 @@ public class Main {
     }*/
 
     public static void main(String[] args){
-        System.out.println(new Palya(5).toString());
+
         Menu menu = new Menu();
         boolean fut = true;
         while (fut){

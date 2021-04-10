@@ -1,14 +1,10 @@
-import java.util.List;
-import java.util.Random;
-import java.util.Scanner;
-
 public class Jatek {
     private Beolvas beolvas;
     private int jatekosokSzama;
     private Jatekos jatekos;
 
     public Jatek() {
-        beolvas = new BeolasKonzol();
+        beolvas = new BeolvasKonzol();
     }
 
     public void bekerJatekosokSzama(){
@@ -24,6 +20,7 @@ public class Jatek {
 
     public void futas(){
         bekerJatekosokSzama();
+        System.out.println(new Palya(jatekosokSzama).toString());
         while (true){
 
         }
