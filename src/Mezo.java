@@ -1,6 +1,7 @@
 public class Mezo {
     private Koordinata koordinata;
     private int dobokockaSzama;
+    private Jatekos birtokos;
 
     public Mezo(Koordinata koordinata) {
         this.koordinata = koordinata;
@@ -26,5 +27,13 @@ public class Mezo {
 
     public void setDobokockaSzama(int dobokockaSzama) {
         this.dobokockaSzama = dobokockaSzama;
+    }
+
+    public Jatekos getBirtokos() {
+        return birtokos;
+    }
+
+    public void setBirtokos(Jatekos birtokos) {
+        this.birtokos = birtokos;
     }
 }

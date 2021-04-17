@@ -1,13 +1,15 @@
 public class Jatek {
     private Beolvas beolvas;
-    private int jatekosokSzama;
     private Jatekos jatekos;
+    private int mezokSzamaEgyJatekosra;
+    private Palya palya;
 
     public Jatek() {
         beolvas = new BeolvasKonzol();
     }
 
-    public void bekerJatekosokSzama(){
+    public void palyaletrehozasa(){
+        int jatekosokSzama = 0;
         System.out.println("Valassz hany ellenfelet szeretnel:");
         System.out.println("1 2 3");
         boolean ujra = true;
@@ -16,34 +18,15 @@ public class Jatek {
             if (jatekosokSzama < 1 || jatekosokSzama > 3) System.out.println("Ez nem 1 es 3 kozott van, valassz 1 es 3 kozott");
             else ujra = false;
         }
+        palya = new Palya(jatekosokSzama);
     }
 
     public void futas(){
-        bekerJatekosokSzama();
-        System.out.println(new Palya(jatekosokSzama).toString());
+        palyaletrehozasa();
+        System.out.println(palya.toString());
+
         while (true){
 
         }
     }
-
-    /*private int ellenfelek;
-
-    public Jatek(int ellenfelek) {
-        this.ellenfelek = ellenfelek;
-    }
-
-    public Jatek() {
-        this.ellenfelek = 1;
-    }
-
-    public int getEllenfelek() {
-        return ellenfelek;
-    }
-
-    public void setEllenfelek(int ellenfelek) {
-        if (ellenfelek < 1) this.ellenfelek = 1;
-        else if (ellenfelek > 3) this.ellenfelek = 3;
-        else this.ellenfelek = ellenfelek;
-    }
-*/
 }

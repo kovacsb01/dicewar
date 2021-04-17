@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Random;
 
 public class Palya {
@@ -5,7 +7,6 @@ public class Palya {
     private Mezo[] mezok;
     private int n;
     private int m;
-
 
     public Palya(int n, int m) {
         this.n = n;
@@ -23,6 +24,50 @@ public class Palya {
         this((n+1)*2, (n+1)*2);
     }
 
+    public void kiosztas(Jatekos[] jatekosok, int mezokSzamaPerJatekos){
+        Jatekos jatekos;
+        Random r = new Random();
+        int index;
+        for (Mezo mezo : mezok) {
+            index = r.nextInt(jatekosok.length);
+            jatekos = jatekosok[index];
+            mezo.setBirtokos(jatekos);
+            jatekos.mezoHozzaad(mezo);
+        }
+        ArrayList<Mezo> mezoArrayList = new ArrayList<Mezo>();
+        boolean jatekosoknakKulonbozoSzamuMezoiVannak = true;
+        while (jatekosoknakKulonbozoSzamuMezoiVannak){
+            for (Jatekos j: jatekosok) {
+                int jMezokSzama = j.getMezokSzama();
+                while (jMezokSzama > mezokSzamaPerJatekos) {
+                    mezoArrayList.add(j.mezoPop());
+                    jMezokSzama--;
+                }
+            }
+            for (Jatekos j: jatekosok) {
+                int jMezokSzama = j.getMezokSzama();
+                while (jMezokSzama < mezokSzamaPerJatekos) {
+                    j.mezoHozzaad(mezoArrayList.remove(0));
+                    jMezokSzama++;
+                }
+            }
+
+            boolean jatekosoknakUgyanAnnyiMezojeVan = true;
+            int jatekos1MezoSzam = jatekosok[0].getMezokSzama();
+            for (Jatekos j: jatekosok) {
+                if (j.getMezokSzama() != jatekos1MezoSzam) {
+                    jatekosoknakUgyanAnnyiMezojeVan = false;
+                    break;
+                }
+            }
+            if (jatekosoknakUgyanAnnyiMezojeVan) jatekosoknakKulonbozoSzamuMezoiVannak = false;
+        }
+    }
+
+    public int getN() {
+        return n;
+    }
+
     @Override
     public String toString() {
 
@@ -36,29 +81,4 @@ public class Palya {
         }
         return palya;
     }
-
-    /*public static int szamol;
-    public static int[][] palyatomb;
-
-    public static int[][] getPalyatomb() {
-        return palyatomb;
-    }
-
-    //itt hozza letre a palya alakjat
-    public static String palyameret(Jatek jatek){
-        String palyameret = "";
-        int index = (jatek.getEllenfelek()+1)*2+1;
-        palyatomb = new int[index][index];
-        for (int i=0; i<index;i++){
-            for (int j=0; j<index;j++){
-                palyatomb[i][j] = i + j;
-                if (i == 0 || j == 0) palyameret += palyatomb[i][j]+" ";
-                else szamol++;
-            }
-            palyameret += "\n";
-        }
-        return palyameret;
-    }*/
-
-
 }
