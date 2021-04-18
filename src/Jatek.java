@@ -1,6 +1,6 @@
 public class Jatek {
     private Beolvas beolvas;
-    private Jatekos jatekos;
+    private Jatekos[] jatekosTomb;
     private int mezokSzamaEgyJatekosra;
     private Palya palya;
 
@@ -8,7 +8,7 @@ public class Jatek {
         beolvas = new BeolvasKonzol();
     }
 
-    public void palyaletrehozasa(){
+    public void palyaLetrehozasa(){
         int jatekosokSzama = 0;
         System.out.println("Valassz hany ellenfelet szeretnel:");
         System.out.println("1 2 3");
@@ -19,10 +19,18 @@ public class Jatek {
             else ujra = false;
         }
         palya = new Palya(jatekosokSzama);
+        jatekosTomb = new Jatekos[jatekosokSzama+1];
+        for (int i = 0; i < jatekosTomb.length; i++){
+            jatekosTomb[i] = new Jatekos(i + 1);
+        }
+        palya.kiosztas(jatekosTomb);
+        for (Jatekos j: jatekosTomb) {
+            j.dobokockaElosztas();
+        }
     }
 
     public void futas(){
-        palyaletrehozasa();
+        palyaLetrehozasa();
         System.out.println(palya.toString());
 
         while (true){

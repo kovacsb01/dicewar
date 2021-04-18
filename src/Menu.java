@@ -10,7 +10,6 @@ public class Menu {
     private Scanner be;
     public Menu() {
         be = new Scanner(System.in);
-
     }
 
     public Valasztas valaszt(){

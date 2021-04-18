@@ -24,43 +24,69 @@ public class Palya {
         this((n+1)*2, (n+1)*2);
     }
 
-    public void kiosztas(Jatekos[] jatekosok, int mezokSzamaPerJatekos){
+    public void kiosztas(Jatekos[] jatekosok){
+        int mezokSzamaPerJatekos = mezok.length / jatekosok.length;
+        assert mezokSzamaPerJatekos * jatekosok.length == mezok.length;
         Jatekos jatekos;
         Random r = new Random();
         int index;
         for (Mezo mezo : mezok) {
             index = r.nextInt(jatekosok.length);
             jatekos = jatekosok[index];
-            mezo.setBirtokos(jatekos);
             jatekos.mezoHozzaad(mezo);
         }
         ArrayList<Mezo> mezoArrayList = new ArrayList<Mezo>();
-        boolean jatekosoknakKulonbozoSzamuMezoiVannak = true;
-        while (jatekosoknakKulonbozoSzamuMezoiVannak){
-            for (Jatekos j: jatekosok) {
-                int jMezokSzama = j.getMezokSzama();
-                while (jMezokSzama > mezokSzamaPerJatekos) {
-                    mezoArrayList.add(j.mezoPop());
-                    jMezokSzama--;
-                }
+        for (Jatekos j: jatekosok) {
+            int jMezokSzama = j.getMezokSzama();
+            while (jMezokSzama > mezokSzamaPerJatekos) {
+                mezoArrayList.add(j.mezoPop());
+                jMezokSzama--;
             }
-            for (Jatekos j: jatekosok) {
-                int jMezokSzama = j.getMezokSzama();
-                while (jMezokSzama < mezokSzamaPerJatekos) {
-                    j.mezoHozzaad(mezoArrayList.remove(0));
-                    jMezokSzama++;
-                }
+        }
+        for (Jatekos j: jatekosok) {
+            int jMezokSzama = j.getMezokSzama();
+            while (jMezokSzama < mezokSzamaPerJatekos) {
+                Mezo m = mezoArrayList.remove(0);
+                j.mezoHozzaad(m);
+                jMezokSzama++;
             }
-
-            boolean jatekosoknakUgyanAnnyiMezojeVan = true;
-            int jatekos1MezoSzam = jatekosok[0].getMezokSzama();
-            for (Jatekos j: jatekosok) {
-                if (j.getMezokSzama() != jatekos1MezoSzam) {
-                    jatekosoknakUgyanAnnyiMezojeVan = false;
-                    break;
-                }
+        }
+        for (Jatekos j: jatekosok) {
+            assert j.getMezokSzama() == mezokSzamaPerJatekos;
+        }
+        assert mezoArrayList.isEmpty();
+    }
+    public void kiosztas2(Jatekos[] jatekosok){
+        int mezokSzamaPerJatekos = mezok.length / jatekosok.length;
+        Jatekos jatekos;
+        Random r = new Random();
+        ArrayList<Jatekos> jatekosArrayList = new ArrayList<Jatekos>();
+        for (Jatekos j: jatekosok) {
+            jatekosArrayList.add(j);
+        }
+        int index;
+        for (Mezo mezo : mezok) {
+            index = r.nextInt(jatekosArrayList.size());
+            jatekos = jatekosok[index];
+            jatekos.mezoHozzaad(mezo);
+            if (jatekos.getMezokSzama() >= mezokSzamaPerJatekos){
+                jatekosArrayList.remove(jatekos);
             }
-            if (jatekosoknakUgyanAnnyiMezojeVan) jatekosoknakKulonbozoSzamuMezoiVannak = false;
+        }
+    }
+    public void kiosztas3(Jatekos[] jatekosok){
+        int mezokSzamaPerJatekos = mezok.length / jatekosok.length;
+        Jatekos jatekos;
+        Random r = new Random();
+        int index;
+        for (Mezo mezo : mezok) {
+            index = r.nextInt(jatekosok.length);
+            jatekos = jatekosok[index];
+            while (jatekos.getMezokSzama() >= mezokSzamaPerJatekos){
+                index = r.nextInt(jatekosok.length);
+                jatekos = jatekosok[index];
+            }
+            jatekos.mezoHozzaad(mezo);
         }
     }
 
@@ -70,12 +96,11 @@ public class Palya {
 
     @Override
     public String toString() {
-
         String palya = "";
         for (int i = 0; i < n+1; i++){
             for (int j = 0; j < m+1; j++){
                 if (i == 0 || j == 0) palya += i + j + " ";
-                else palya += mezok[((i - 1) * m) + (j - 1)].getDobokockaSzama() + " ";
+                else palya += mezok[((i - 1) * m) + (j - 1)].getDobokockakSzamaSzinesen() + " ";
             }
             palya += "\n";
         }
