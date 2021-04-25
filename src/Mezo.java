@@ -44,4 +44,9 @@ public class Mezo {
     public String getDobokockakSzamaSzinesen() {
         return Szinek.szinez(birtokos.getSzinId(),""+dobokockaSzama);
     }
+
+    @Override
+    public String toString() {
+        return "(" + (koordinata.getX() + 1) + ", " + (koordinata.getY() + 1) + ") "+getDobokockakSzamaSzinesen();
+    }
 }

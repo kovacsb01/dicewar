@@ -1,6 +1,4 @@
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Random;
+import java.util.*;
 
 public class Palya {
 
@@ -18,6 +16,10 @@ public class Palya {
                 mezok[(i * m) + j] = new Mezo(new Koordinata(i, j));
             }
         }
+    }
+
+    public int meret(){
+        return mezok.length;
     }
 
     public Palya(int n) {
@@ -88,6 +90,29 @@ public class Palya {
             }
             jatekos.mezoHozzaad(mezo);
         }
+    }
+
+    public Mezo getMezo(Koordinata koordinata){
+        return getMezo(koordinata.getX(), koordinata.getY());
+    }
+
+    public Mezo getMezo(int x, int y){
+        int index = (x * m) + y;
+        Mezo mezo = null;
+        if (mezok.length > index && 0 <= index){
+            mezo = mezok[index];
+            assert mezo.getKoordinata().equals(x, y):""+ x +" "+ y;
+        }
+        return mezo;
+    }
+
+    public List<Mezo> getSzomszedMezok(Mezo mezo){
+        List<Mezo> mezoList = new ArrayList<Mezo>();
+        for (Mezo m: mezok) {
+            if (m.getKoordinata().szomszed(mezo.getKoordinata())) mezoList.add(m);
+        }
+        assert mezoList.size() <= 4 && mezoList.size() >= 2;
+        return mezoList;
     }
 
     public int getN() {

@@ -12,14 +12,15 @@ public class BeolvasKonzol extends Beolvas{
     public String kovetkezoSor(){
         return be.nextLine();
     }
+
     @Override
     public int kovetkezoSzam(){
         int szam = 0;
         boolean ujra = true;
         while (ujra) {
-            be = new Scanner(System.in);
+            String sor = kovetkezoSor();
             try {
-                szam = be.nextInt();
+                szam = Integer.parseInt(sor);
                 ujra = false;
             } catch (Exception e) {
                 System.out.println("Ez nem szam, szamot irj!");
@@ -27,5 +28,4 @@ public class BeolvasKonzol extends Beolvas{
         }
         return szam;
     }
-
 }

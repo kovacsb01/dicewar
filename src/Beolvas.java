@@ -1,10 +1,5 @@
-public class Beolvas {
+public abstract class Beolvas {
 
-    public String kovetkezoSor(){
-        return "";
-    }
-    public int kovetkezoSzam(){
-        return 0;
-    }
-
+    public abstract String kovetkezoSor();
+    public abstract int kovetkezoSzam();
 }
