@@ -4,6 +4,9 @@ import jatekosok.Jatekos;
 
 import java.util.*;
 
+/**
+ * Ez a palya ahol jatszodik a jatek
+ */
 public class Palya {
 
     private Mezo[] mezok;
@@ -22,14 +25,22 @@ public class Palya {
         }
     }
 
-    public int meret(){
-        return mezok.length;
-    }
-
     public Palya(int n) {
         this((n+1)*2, (n+1)*2);
     }
 
+    /**
+     * A palya merete
+     * @return palya meret
+     */
+    public int meret(){
+        return mezok.length;
+    }
+
+    /**
+     * Itt osztja ki a jatekosok kozott a mezoket a palya
+     * @param jatekosok a jatszo jatekosok
+     */
     public void kiosztas(Jatekos[] jatekosok){
         int mezokSzamaPerJatekos = mezok.length / jatekosok.length;
         assert mezokSzamaPerJatekos * jatekosok.length == mezok.length;
@@ -63,10 +74,21 @@ public class Palya {
         assert mezoArrayList.isEmpty();
     }
 
+    /**
+     * Egy mezo koordinatajanak a lekerdezese
+     * @param koordinata a lekerdezendo koordinata
+     * @return x es y koordinata
+     */
     public Mezo getMezo(Koordinata koordinata){
         return getMezo(koordinata.getX(), koordinata.getY());
     }
 
+    /**
+     * Egy mezo koordinatajanak a lekerdezese
+     * @param x x oldali szomszed
+     * @param y y oldali szomszed
+     * @return szomszedos koordinatak
+     */
     public Mezo getMezo(int x, int y){
         int index = (x * m) + y;
         Mezo mezo = null;
@@ -77,6 +99,11 @@ public class Palya {
         return mezo;
     }
 
+    /**
+     * Osszegyujti az adott mezo szomszedos koordinatait
+     * @param mezo a kivalasztott mezo
+     * @return szomszedos koordinatak lista
+     */
     public List<Mezo> getSzomszedMezok(Mezo mezo){
         List<Mezo> mezoList = new ArrayList<Mezo>();
         for (Mezo m: mezok) {
@@ -86,10 +113,18 @@ public class Palya {
         return mezoList;
     }
 
+    /**
+     * A palya egyik oldala
+     * @return egyik oldal meret
+     */
     public int getN() {
         return n;
     }
 
+    /**
+     * Kiirja a palyat
+     * @return palya
+     */
     @Override
     public String toString() {
         String palya = "";
